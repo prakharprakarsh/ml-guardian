@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  # ML Guardian — Core monitoring agent
+  guardian:
+    build: .
+    container_name: ml-guardian-core
+    env_file: .env
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+      - ./reports_output:/app/reports_output
+      - ./audit_logs:/app/audit_logs
+    command: python -m core.orchestrator
+    restart: unless-stopped
+
+  # Streamlit Dashboard
+  dashboard:
+    build: .
+    container_name: ml-guardian-dashboard
+    env_file: .env
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+      - ./reports_output:/app/reports_output
+      - ./audit_logs:/app/audit_logs
+    command: streamlit run dashboard/app.py --server.port=8501 --server.address=0.0.0.0
+    restart: unless-stopped
+
+  # Run tests
+  tests:
+    build: .
+    container_name: ml-guardian-tests
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data
+      - ./reports_output:/app/reports_output
+      - ./audit_logs:/app/audit_logs
+    command: python -m pytest tests/ -v --tb=short
+    profiles:
+      - testing

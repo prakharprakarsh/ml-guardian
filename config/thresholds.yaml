@@ -1,0 +1,66 @@
+# ML Guardian — Threshold Configuration
+# These thresholds control when agents take action.
+
+drift:
+  # Data drift thresholds (PSI-based)
+  data_drift:
+    warning: 0.10     # PSI > 0.10 → warning
+    critical: 0.20    # PSI > 0.20 → trigger retraining
+    
+  # Feature-level drift
+  feature_drift:
+    max_drifted_features_pct: 0.30  # >30% features drifted → critical
+    
+  # Prediction drift
+  prediction_drift:
+    warning: 0.10
+    critical: 0.15
+
+performance:
+  # Model accuracy thresholds
+  accuracy:
+    minimum: 0.85        # Below this → incident report
+    target: 0.92         # Target performance
+    
+  # F1 score thresholds  
+  f1_score:
+    minimum: 0.80
+    target: 0.88
+    
+  # AUC-ROC thresholds
+  auc_roc:
+    minimum: 0.82
+    target: 0.90
+    
+  # Performance drop (relative)
+  max_performance_drop_pct: 5.0  # >5% drop → incident
+
+ab_test:
+  # Minimum improvement to promote challenger
+  min_improvement_pct: 2.0
+  # Maximum degradation to trigger rollback
+  max_degradation_pct: 3.0
+  # Statistical significance
+  p_value_threshold: 0.05
+  
+fairness:
+  # EU AI Act fairness thresholds
+  demographic_parity_diff: 0.10
+  equalized_odds_diff: 0.10
+  disparate_impact_ratio_min: 0.80
+  
+  # Protected attributes to monitor
+  protected_attributes:
+    - gender
+    - age_group
+    - nationality
+
+rollback:
+  # Conditions for automatic rollback
+  auto_rollback:
+    accuracy_drop_pct: 10.0        # >10% accuracy drop
+    error_rate_spike_pct: 200.0    # 2x error rate increase
+    latency_spike_ms: 500          # >500ms prediction latency
+    
+  # Cooldown period after rollback (hours)
+  cooldown_hours: 6
