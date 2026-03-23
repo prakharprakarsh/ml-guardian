@@ -1,4 +1,4 @@
-# 🛡️ ML Guardian — Agentic ML Model Lifecycle Guardian
+#  ML Guardian — Agentic ML Model Lifecycle Guardian
 
 > An autonomous MLOps agent that watches production ML models 24/7: detects data drift, triggers automatic retraining, runs A/B tests, generates EU AI Act–mandated incident reports, and auto-rolls back bad deployments.
 
@@ -21,7 +21,7 @@
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Clone & Install
 ```bash
@@ -60,7 +60,7 @@ python -m tests.simulate_drift
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 ml-guardian/
@@ -104,7 +104,7 @@ ml-guardian/
 
 ---
 
-## 🤖 Agent Details
+##  Agent Details
 
 | Agent | Trigger | Action | EU AI Act Relevance |
 |-------|---------|--------|---------------------|
@@ -127,7 +127,7 @@ ml-guardian/
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 | Component | Technology |
 |-----------|-----------|
@@ -144,6 +144,6 @@ ml-guardian/
 
 ---
 
-## 📜 License
+##  License
 
 MIT License — Built by [Prakhar Prakarsh](https://github.com/YOUR_USERNAME)
