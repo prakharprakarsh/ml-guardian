@@ -197,7 +197,7 @@ class IncidentAgent:
             "time_window": f"{state.last_check} to present",
             "mitigation_actions": [
                 {"timestamp": a["timestamp"], "action": a["action"],
-                 "details": json.dumps(a.get("details", {}))}
+                 "details": json.dumps(a.get("details", {}), default=str)}
                 for a in state.action_log[-5:]
             ],
             "corrective_measures": [
@@ -215,7 +215,7 @@ class IncidentAgent:
             },
             "audit_trail": [
                 {"timestamp": a["timestamp"], "action": a["action"],
-                 "details": json.dumps(a.get("details", {}))[:100]}
+                 "details": json.dumps(a.get("details", {}), default=str)[:100]}
                 for a in state.action_log[-20:]
             ],
         }

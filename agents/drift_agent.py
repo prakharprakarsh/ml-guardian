@@ -147,7 +147,7 @@ class DriftAgent:
             )
 
             # Extract results
-            result = report.as_dict()
+            result = report.dict()
             metrics = result.get("metrics", [])
 
             dataset_drift = False
